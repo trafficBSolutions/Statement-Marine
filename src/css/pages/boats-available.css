@@ -1,0 +1,51 @@
+.boats-hero {
+    background: linear-gradient(135deg, #0a2342, #005078, #0097a7);
+    color: #fff;
+    text-align: center;
+    padding: 140px 20px 60px;
+}
+
+.boats-hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 42px;
+    margin-bottom: 12px;
+}
+
+.boats-hero p {
+    font-weight: 300;
+    opacity: 0.85;
+}
+
+.boats-content {
+    max-width: 700px;
+    margin: 60px auto;
+    padding: 0 20px;
+    text-align: center;
+}
+
+.boats-cta {
+    font-size: 18px;
+    line-height: 1.7;
+    color: #4a5568;
+    margin-bottom: 36px;
+}
+
+.btn-contact {
+    display: inline-block;
+    padding: 14px 40px;
+    background: linear-gradient(135deg, #00c9a7, #0097a7);
+    color: #fff;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border-radius: 50px;
+    transition: all 0.3s;
+    box-shadow: 0 4px 20px rgba(0, 201, 167, 0.3);
+}
+
+.btn-contact:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(0, 201, 167, 0.4);
+}
