@@ -1,0 +1,76 @@
+.footer {
+    background: linear-gradient(135deg, #071a2f, #0a2342);
+    color: rgba(255, 255, 255, 0.7);
+    text-align: center;
+    padding: 40px 20px;
+    border-top: 3px solid #00c9a7;
+}
+
+.footer-inner {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 0 20px;
+    gap: 12px;
+    display: flex;
+    align-items: center;
+}
+.footer-divider {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+.footer-dragon {
+    height: 200px;
+    width: auto;
+    margin-bottom: 14px;
+    opacity: 0.85;
+}
+
+.footer-brand {
+    font-family: "Eurostile Black Extended Italic", sans-serif;
+    font-size: 17px;
+    color: #fff;
+    margin-bottom: 12px;
+}
+
+.footer-contact {
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+.footer-contact a {
+    color: #00c9a7;
+    text-decoration: none;
+    transition: color 0.2s;
+    font-family: "Roboto", sans-serif;
+}
+
+.footer-contact a:hover {
+    color: #fff;
+}
+
+.footer-contact .divider {
+    margin: 0 10px;
+    opacity: 0.4;
+}
+
+.footer-address {
+    font-size: 13px;
+    opacity: 0.6;
+    font-family: "Roboto", sans-serif;
+}
+.footer-face {
+    color: #00c9a7;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+.footer-copyright {
+    background: #071a2f;
+    color: rgba(255, 255, 255, 0.5);
+    text-align: center;
+    padding: 12px 20px;
+    font-size: 12px;
+    font-family: "Roboto", sans-serif;
+}
