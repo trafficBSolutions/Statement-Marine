@@ -1,0 +1,93 @@
+.about-hero {
+    background: linear-gradient(135deg, #0a2342, #005078, #0097a7);
+    color: #fff;
+    text-align: center;
+    padding: 140px 20px 60px;
+}
+
+.about-hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 42px;
+    margin-bottom: 12px;
+}
+
+.about-hero .tagline {
+    font-size: 18px;
+    font-weight: 300;
+    opacity: 0.85;
+    letter-spacing: 1px;
+}
+
+.about-intro {
+    max-width: 750px;
+    margin: 60px auto;
+    padding: 0 20px;
+    text-align: center;
+}
+
+.about-intro p {
+    font-size: 16px;
+    line-height: 1.9;
+    color: #4a5568;
+    margin-bottom: 18px;
+}
+
+.cta-text {
+    font-weight: 700;
+    font-size: 20px;
+    color: #0a2342;
+    font-style: italic;
+}
+
+.about-differentiators {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 40px 20px 80px;
+}
+
+.about-differentiators h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    color: #0a2342;
+    text-align: center;
+    margin-bottom: 12px;
+}
+
+.diff-intro {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 40px;
+    color: #4a5568;
+    line-height: 1.7;
+}
+
+.diff-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+}
+
+.diff-card {
+    background: #fff;
+    padding: 28px;
+    border-radius: 12px;
+    border-left: 4px solid #00c9a7;
+    box-shadow: 0 4px 20px rgba(10, 35, 66, 0.06);
+    transition: transform 0.2s;
+}
+
+.diff-card:hover {
+    transform: translateY(-3px);
+}
+
+.diff-card h3 {
+    font-size: 16px;
+    color: #0a2342;
+    margin-bottom: 10px;
+}
+
+.diff-card p {
+    color: #4a5568;
+    line-height: 1.7;
+    font-size: 14px;
+}
