@@ -1,0 +1,109 @@
+.boat-viewer-section {
+    padding: 4rem 2rem;
+    background: #0d0d0d;
+}
+
+.boat-viewer-section h2 {
+    text-align: center;
+    color: #fff;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.boat-viewer-container {
+    display: flex;
+    gap: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    min-height: 500px;
+}
+
+.boat-canvas-wrapper {
+    flex: 1;
+    min-height: 500px;
+    border-radius: 12px;
+    overflow: hidden;
+    background: linear-gradient(135deg, #1a1a2e, #16213e);
+}
+
+.spec-panel {
+    width: 280px;
+    background: #1a1a1a;
+    border-radius: 12px;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.spec-panel h3 {
+    color: #fff;
+    font-size: 1.2rem;
+    margin: 0 0 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.spec-control {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.spec-control label {
+    color: #ccc;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.spec-control input[type="color"] {
+    width: 100%;
+    height: 36px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    background: none;
+}
+
+.spec-control input[type="range"] {
+    width: 100%;
+    accent-color: #088395;
+}
+
+.spec-control select {
+    padding: 0.5rem;
+    border-radius: 6px;
+    border: 1px solid #333;
+    background: #222;
+    color: #fff;
+    font-size: 0.9rem;
+}
+
+.spec-summary {
+    margin-top: auto;
+    padding-top: 1rem;
+    border-top: 1px solid #333;
+    color: #aaa;
+    font-size: 0.85rem;
+}
+
+.spec-summary ul {
+    list-style: none;
+    padding: 0;
+    margin: 0.5rem 0 0;
+}
+
+.spec-summary li {
+    padding: 0.2rem 0;
+}
+
+@media (max-width: 900px) {
+    .boat-viewer-container {
+        flex-direction: column;
+    }
+    .spec-panel {
+        width: 100%;
+    }
+}
