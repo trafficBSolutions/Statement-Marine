@@ -6,6 +6,6 @@ function importAll(r) {
   return images;
 }
 
-const images = importAll(require.context('../assets', true, /\.(png|jpe?g|svg|mp4|pdf)$/));
+const images = importAll(require.context('../assets', true, /\.(png|jpe?g|svg|mp4|pdf|webp)$/));
 
 export default images;
