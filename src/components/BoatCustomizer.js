@@ -1,10 +1,6 @@
-import { useState, useRef, Suspense } from 'react';
-import { Canvas } from '@react-three/fiber';
-import { OrbitControls, Environment, ContactShadows } from '@react-three/drei';
-import BoatModel3D from './BoatModel3D';
+import { useState, useRef } from 'react';
 import '../css/components/boatCustomizer.css';
 
-// Preset hull colors
 const hullPresets = [
     { name: 'Deep Ocean', color: '#0a4d68' },
     { name: 'Racing Purple', color: '#4a0e6b' },
@@ -18,7 +14,6 @@ const hullPresets = [
     { name: 'Gunmetal', color: '#2c3539' },
 ];
 
-// Preset deck foam colors/styles
 const deckFoamPresets = [
     { name: 'Classic Teak', color: '#8B6914', pattern: 'teak' },
     { name: 'Storm Grey', color: '#5a5a5a', pattern: 'solid' },
@@ -30,7 +25,6 @@ const deckFoamPresets = [
     { name: 'Custom Two-Tone', color: '#0a4d68', pattern: 'twotone' },
 ];
 
-// Design album images (from PaintsGel folder)
 const designAlbum = [
     { src: '2023+380+PE+13.webp', label: '380 Pearl Edition' },
     { src: '36-cat-banner.webp', label: '360 Cat Design' },
@@ -62,7 +56,8 @@ const rgbToHex = (r, g, b) => '#' + [r, g, b].map(v => v.toString(16).padStart(2
 function RGBChart({ color, onChange, label }) {
     const rgb = hexToRgb(color);
     const setChannel = (channel, value) => {
-        const updated = { ...rgb, [channel]: parseInt(value) };
+        const v = Math.min(255, Math.max(0, parseInt(value) || 0));
+        const updated = { ...rgb, [channel]: v };
         onChange(rgbToHex(updated.r, updated.g, updated.b));
     };
 
@@ -101,8 +96,6 @@ export default function BoatCustomizer({ defaultSpecs = {} }) {
         deckFoamImage: null,
         selectedDesign: null,
         fontColor: '#ffffff',
-        length: defaultSpecs.length || 38,
-        engines: defaultSpecs.engines || 3,
     });
     const fileInputRef = useRef(null);
 
@@ -111,15 +104,9 @@ export default function BoatCustomizer({ defaultSpecs = {} }) {
     const handleImageUpload = (e) => {
         const file = e.target.files[0];
         if (!file) return;
-        const url = URL.createObjectURL(file);
-        update('deckFoamImage', url);
+        update('deckFoamImage', URL.createObjectURL(file));
     };
 
-    const selectDesign = (src) => {
-        update('selectedDesign', src);
-    };
-
-    // Import all PaintsGel images
     const paintImages = require.context('../assets/PaintsGel', false, /\.(webp|jpg|png)$/);
     const getDesignImg = (filename) => {
         try { return paintImages(`./${filename}`); } catch { return null; }
@@ -136,21 +123,19 @@ export default function BoatCustomizer({ defaultSpecs = {} }) {
         <section className="customizer-section">
             <h2>Build Your Statement</h2>
             <div className="customizer-layout">
-                {/* 3D Preview */}
-                <div className="customizer-canvas">
-                    <Canvas camera={{ position: [6, 4, 6], fov: 45 }}>
-                        <ambientLight intensity={0.4} />
-                        <directionalLight position={[5, 8, 5]} intensity={1} castShadow />
-                        <Suspense fallback={null}>
-                            <BoatModel3D color={config.hullColor} length={config.length} deckColor={config.deckFoamColor} />
-                            <Environment preset="sunset" />
-                            <ContactShadows position={[0, -0.9, 0]} opacity={0.4} blur={2} />
-                        </Suspense>
-                        <OrbitControls enablePan={false} minDistance={4} maxDistance={14} />
-                    </Canvas>
+                {/* Live Preview */}
+                <div className="customizer-preview">
+                    <div className="preview-boat" style={{ background: config.hullColor }}>
+                        <div className="preview-deck" style={{ background: config.deckFoamColor }}>
+                            {config.deckFoamImage && (
+                                <img src={config.deckFoamImage} alt="Custom foam" className="preview-foam-img" />
+                            )}
+                        </div>
+                        <span className="preview-name" style={{ color: config.fontColor }}>STATEMENT</span>
+                    </div>
                 </div>
 
-                {/* Customization Panel */}
+                {/* Panel */}
                 <div className="customizer-panel">
                     <div className="panel-tabs">
                         {tabs.map((tab) => (
@@ -165,12 +150,11 @@ export default function BoatCustomizer({ defaultSpecs = {} }) {
                     </div>
 
                     <div className="panel-content">
-                        {/* HULL COLOR TAB */}
                         {activeTab === 'hull' && (
                             <div className="tab-hull">
                                 <h4>Choose Your Hull Color</h4>
                                 <RGBChart color={config.hullColor} onChange={(c) => update('hullColor', c)} label="Hull RGB" />
-                                <p className="panel-label">Or pick a preset:</p>
+                                <p className="panel-label">Presets:</p>
                                 <div className="swatch-grid">
                                     {hullPresets.map((p) => (
                                         <button
@@ -183,13 +167,9 @@ export default function BoatCustomizer({ defaultSpecs = {} }) {
                                     ))}
                                 </div>
                                 <RGBChart color={config.fontColor} onChange={(c) => update('fontColor', c)} label="Font / Lettering Color" />
-                                <div className="font-preview" style={{ color: config.fontColor, background: config.hullColor }}>
-                                    STATEMENT
-                                </div>
                             </div>
                         )}
 
-                        {/* DECK FOAM TAB */}
                         {activeTab === 'foam' && (
                             <div className="tab-foam">
                                 <h4>Deck Foam Style</h4>
@@ -209,16 +189,8 @@ export default function BoatCustomizer({ defaultSpecs = {} }) {
                                 </div>
                                 <div className="upload-section">
                                     <p className="panel-label">Upload your own deck foam image:</p>
-                                    <button className="upload-btn" onClick={() => fileInputRef.current.click()}>
-                                        Choose Image
-                                    </button>
-                                    <input
-                                        ref={fileInputRef}
-                                        type="file"
-                                        accept="image/*"
-                                        style={{ display: 'none' }}
-                                        onChange={handleImageUpload}
-                                    />
+                                    <button className="upload-btn" onClick={() => fileInputRef.current.click()}>Choose Image</button>
+                                    <input ref={fileInputRef} type="file" accept="image/*" style={{ display: 'none' }} onChange={handleImageUpload} />
                                     {config.deckFoamImage && (
                                         <div className="upload-preview">
                                             <img src={config.deckFoamImage} alt="Custom deck foam" />
@@ -229,11 +201,10 @@ export default function BoatCustomizer({ defaultSpecs = {} }) {
                             </div>
                         )}
 
-                        {/* DESIGN ALBUM TAB */}
                         {activeTab === 'album' && (
                             <div className="tab-album">
                                 <h4>Statement Design Album</h4>
-                                <p className="panel-label">Browse our paint & gel coat designs for inspiration:</p>
+                                <p className="panel-label">Browse our paint & gel coat designs:</p>
                                 <div className="album-grid">
                                     {designAlbum.map((d) => {
                                         const img = getDesignImg(d.src);
@@ -242,7 +213,7 @@ export default function BoatCustomizer({ defaultSpecs = {} }) {
                                             <button
                                                 key={d.src}
                                                 className={`album-item ${config.selectedDesign === d.src ? 'active' : ''}`}
-                                                onClick={() => selectDesign(d.src)}
+                                                onClick={() => update('selectedDesign', d.src)}
                                             >
                                                 <img src={img} alt={d.label} />
                                                 <span>{d.label}</span>
@@ -253,7 +224,6 @@ export default function BoatCustomizer({ defaultSpecs = {} }) {
                             </div>
                         )}
 
-                        {/* SUMMARY TAB */}
                         {activeTab === 'summary' && (
                             <div className="tab-summary">
                                 <h4>Your Build Summary</h4>
@@ -263,18 +233,18 @@ export default function BoatCustomizer({ defaultSpecs = {} }) {
                                     <span>{config.hullColor}</span>
                                 </div>
                                 <div className="summary-row">
-                                    <span>Deck Foam:</span>
-                                    <span className="summary-swatch" style={{ background: config.deckFoamColor }} />
-                                    <span>{config.deckFoamPattern}</span>
-                                </div>
-                                <div className="summary-row">
                                     <span>Font Color:</span>
                                     <span className="summary-swatch" style={{ background: config.fontColor }} />
                                     <span>{config.fontColor}</span>
                                 </div>
+                                <div className="summary-row">
+                                    <span>Deck Foam:</span>
+                                    <span className="summary-swatch" style={{ background: config.deckFoamColor }} />
+                                    <span>{config.deckFoamPattern}</span>
+                                </div>
                                 {config.deckFoamImage && (
                                     <div className="summary-row">
-                                        <span>Custom Foam Image:</span>
+                                        <span>Custom Foam:</span>
                                         <img src={config.deckFoamImage} alt="custom" className="summary-thumb" />
                                     </div>
                                 )}
