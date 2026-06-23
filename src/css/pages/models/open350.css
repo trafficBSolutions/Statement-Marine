@@ -1,0 +1,90 @@
+/* ===== HERO ===== */
+.open350-hero {
+    position: relative;
+    height: 70vh;
+    min-height: 450px;
+    overflow: hidden;
+}
+
+.open350-hero img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.open350-hero-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: linear-gradient(transparent 30%, rgba(10, 35, 66, 0.7));
+    color: #fff;
+}
+
+.open350-hero-overlay h1 {
+    font-family: "Eurostile Black Extended Italic", sans-serif;
+    font-size: clamp(36px, 7vw, 64px);
+    letter-spacing: 6px;
+    text-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+    margin-bottom: 8px;
+}
+
+.open350-hero-overlay p {
+    font-size: 18px;
+    font-weight: 300;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    opacity: 0.85;
+    color: #fff;
+}
+
+/* ===== MAIN ===== */
+.open350-main {
+    background: #0d1f33;
+}
+
+/* ===== CTA ===== */
+.open350-cta {
+    text-align: center;
+    padding: 100px 20px;
+    background: linear-gradient(135deg, #0a2342, #005078);
+    color: #fff;
+}
+
+.open350-cta h2 {
+    font-family: "Eurostile Black Extended Italic", sans-serif;
+    font-size: clamp(24px, 4vw, 36px);
+    margin-bottom: 12px;
+    letter-spacing: 2px;
+}
+
+.open350-cta p {
+    font-size: 16px;
+    opacity: 0.8;
+    margin-bottom: 32px;
+    color: #fff;
+}
+
+.open350-cta .cta-btn {
+    display: inline-block;
+    padding: 16px 44px;
+    background: linear-gradient(135deg, #00c9a7, #0097a7);
+    color: #fff;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 700;
+    font-family: "Eurostile Black Extended Italic", sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border-radius: 50px;
+    transition: all 0.3s;
+    box-shadow: 0 4px 24px rgba(0, 201, 167, 0.35);
+}
+
+.open350-cta .cta-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 36px rgba(0, 201, 167, 0.5);
+}
