@@ -1,10 +1,9 @@
 import Header from '../../components/headers/homeHeader';
 import Footer from '../../components/footers/homeFooter';
-import BoatCustomizer from '../../components/BoatCustomizer';
 import images from '../../utils/images';
 import '../../css/pages/model.css';
 
-const ModelPage = ({ name, subtitle, heroImg, description, highlights, specs, features, options, defaultViewerSpecs }) => {
+const ModelPage = ({ name, subtitle, heroImg, description, highlights, specs, features, options }) => {
     return (
         <div>
             <Header />
@@ -28,8 +27,6 @@ const ModelPage = ({ name, subtitle, heroImg, description, highlights, specs, fe
                         </div>
                     ))}
                 </section>
-
-                <BoatCustomizer defaultSpecs={defaultViewerSpecs} />
 
                 {specs && (
                     <section className="model-specs-section">
