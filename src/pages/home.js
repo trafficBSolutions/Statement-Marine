@@ -21,7 +21,7 @@ const models = [
 const Home = () => {
     const heroRef = useRef(null);
     const heroContentRef = useRef(null);
-    const heroBoatRef = useRef(null);
+
     const introRef = useRef(null);
     const showcaseRef = useRef(null);
     const scrollContainerRef = useRef(null);
@@ -30,24 +30,6 @@ const Home = () => {
 
     useEffect(() => {
         const ctx = gsap.context(() => {
-            // Boat entrance animation
-            gsap.fromTo(heroBoatRef.current,
-                { opacity: 0, y: 60, scale: 0.9 },
-                { opacity: 1, y: 0, scale: 1, duration: 1.5, ease: 'power3.out', delay: 0.3 }
-            );
-
-            // Boat parallax on scroll
-            gsap.to(heroBoatRef.current, {
-                y: -100,
-                scale: 0.95,
-                scrollTrigger: {
-                    trigger: heroRef.current,
-                    start: 'top top',
-                    end: 'bottom top',
-                    scrub: true,
-                },
-            });
-
             gsap.to(heroContentRef.current, {
                 opacity: 0,
                 y: -80,
@@ -149,9 +131,7 @@ const Home = () => {
                             />
                         </ShaderGradientCanvas>
                     </div>
-                    <div className="hero-boat" ref={heroBoatRef}>
-                        <img src={images['statement-tigress.jpg']} alt="Statement Boat" />
-                    </div>
+
                     <div className="hero-content" ref={heroContentRef}>
                         <h1 className="hero-title">IT'S A CULTURE</h1>
                         <p className="hero-sub">High performance art on the water</p>
